@@ -1,0 +1,75 @@
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #ffffff00;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .label {
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  .input {
+    height: 40px;
+    padding: 0 10px;
+    background-color: #eee;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .select {
+    width: 250px;
+  }
+  
+  .mat-option {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .mat-form-field {
+    width: 250px;
+  }
+  
+  .mat-datepicker-toggle {
+    color: #333;
+  }
+  
+  .mat-datepicker-content {
+    background-color: #fff;
+    color: #333;
+  }
+  
+  .mat-calendar-header {
+    background-color: #444;
+    color: #fff;
+  }
+  
+  .mat-calendar-cell:hover {
+    background-color: #eee;
+  }
+  
+  .mat-calendar-period-button {
+    color: #fff;
+  }
+  
+  .mat-calendar-arrow:hover {
+    background-color: #eee;
+  }
+  
+  
+
+  

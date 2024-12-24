@@ -1,0 +1,223 @@
+<div class="container my-4">
+
+  <h1 style="text-align: center;">Master Data </h1>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; ">
+
+    <div style="margin: 20px">
+      <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="search()" placeholder="Device Id"> &nbsp;
+      <button (click)="search()" style="border-radius: 5; background-color:  rgba(61, 11, 73, 1);">Search</button> 
+      <button (click)="reset()">Reset</button> <p style="margin-top: 5px;">{{searchErrMsg}}</p></div>
+      <div>
+        <label style="color:white; font-size: large;">{{search_text}}</label>
+      </div>
+      <div>
+      
+        <mat-form-field style="margin-right: 20px; height:75px; background-color: transparent;">
+          <mat-select [(ngModel)]="search_drop" placeholder="{{search_drop}}">
+            <mat-option value="[Select]">[Device Type]</mat-option>
+            <mat-option value="Sendum Device">Sendum Device</mat-option>
+            <mat-option value="Tive Device">Tive Device</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <button style="margin-right: 20px;" class="btn hover-search"
+          style="border-radius: 5; background-color:  rgba(61, 11, 73, 1); color: white; border-width: 2px; border-color: white;" (click)=" searchDevice()"
+          >Search</button>
+      </div>
+    </div>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="datasource" matSort style="background-color: transparent;">
+
+
+    <ng-container matColumnDef="deviceId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Device Id </mat-header-cell>
+      <mat-cell *matCellDef="let row"> <a [routerLink]="['/DeviceMaster', 'update', row.deviceId]"> {{row.deviceId}} </a></mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="deviceName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Device Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.deviceName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="deviceType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Device Type </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.deviceType}} </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.status}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ownership">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ownership</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.ownership}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="validFrom">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Valid From </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.validFrom}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="validTo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Valid To </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.validTo}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="market">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Market </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.market}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons style="background-color: transparent;"></mat-paginator>
+</div>
+</div>
+
+
+
+<div style="display: flex;  margin: 50px; position: relative; bottom: 20px;">
+ 
+  <div>
+    
+    <button style="margin-left: 30px;" class="btn btn-add" (click)="addMasterData()">Add +</button>
+  </div>
+</div>
+
+
+<style>
+
+  .btn-add {
+    border-radius: 5;
+    background-color: rgba(61, 11, 73, 1);
+    color: white;
+    border-width: 2px;
+    border-color: white;
+  }
+
+  .btn-add:hover {
+    border-radius: 5;
+    border-width: 2px;
+    border-color: white;
+    background-color: rgba(7, 165, 31, 0.911);
+    color: rgba(255, 255, 255, 1);
+  }
+</style>
+
+
+<!-- <div class="container my-4">
+
+    <h1> Device Master Data </h1>
+
+
+    <div style="display: flex; justify-content: space-between; align-items: center; ">
+      <div>
+        <label style="color:white; font-size: large;">{{search_text}}</label>
+      </div>
+      <div>
+      
+        <mat-form-field style="margin-right: 20px; height:75px; background-color: transparent;">
+          <mat-select [(ngModel)]="search_drop" placeholder="{{search_drop}}">
+            <mat-option value="[Select]">[Device Type]</mat-option>
+            <mat-option value="Sendum Device">Sendum Device</mat-option>
+            <mat-option value="Tive Device">Tive Device</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <button style="margin-right: 20px;" class="btn hover-search"
+          style="border-radius: 5; background-color: transparent; color: white; border-width: 2px; border-color: white;" (click)="searchDevice()"
+          >Search</button>
+      </div>
+    </div>
+
+    <table class="table" *ngIf="masterData && masterData.length > 0">
+        <thead>
+            <tr>
+                <th> Device Id </th>
+                <th> Device Name </th>
+                <th> Device Type </th>
+                <th> Status </th>
+                <th> Ownership </th>
+                <th> Valid From </th>
+                <th> Valid To </th>
+                <th> Market</th>
+    
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of masterData">
+                <td><a [routerLink]="['/DeviceMaster', 'update', data.deviceId]">{{data.deviceId}} </a> </td>
+                <td> {{data.deviceName}} </td> 
+                <td> {{data.deviceType}} </td> 
+                <td> {{data.status}} </td> 
+                <td> {{data.ownership}} </td> 
+                <td> {{data.validFrom}} </td> 
+                <td> {{data.validTo}} </td> 
+                
+            </tr>
+        </tbody>
+    </table>
+
+    <p *ngIf="!masterData || masterData.length <= 0">Master Data Not Found</p>
+
+    <mat-paginator [length]="100"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page" style="background-color: transparent;">
+   </mat-paginator>
+
+</div>
+
+<div style="display: flex;  margin: 50px; position: relative; bottom: 20px;">
+   
+    <div>
+      
+      <button style="margin-left: 20px;" class="btn btn-add" (click)="addMasterData()">Add +</button>
+    </div>
+  </div>
+
+  <style>
+    .btn-del {
+      border-radius: 5;
+      background-color: rgba(61, 11, 73, 1);
+      color: white;
+      border-width: 2px;
+      border-color: white;
+    }
+  
+    .btn-del:hover {
+      border-radius: 5;
+      border-width: 2px;
+      border-color: white;
+      background-color: rgba(221, 0, 41, 0.911);
+      color: rgba(255, 255, 255, 1);
+    }
+  
+    .td:hover{
+      background-color: rgba(221, 0, 155, 0.911);
+      color: rgba(255, 255, 255, 1);
+    }
+  
+    .btn-add {
+      border-radius: 5;
+      background-color: rgba(61, 11, 73, 1);
+      color: white;
+      border-width: 2px;
+      border-color: white;
+    }
+  
+    .btn-add:hover {
+      border-radius: 5;
+      border-width: 2px;
+      border-color: white;
+      background-color: rgba(7, 165, 31, 0.911);
+      color: rgba(255, 255, 255, 1);
+    }
+  </style> -->

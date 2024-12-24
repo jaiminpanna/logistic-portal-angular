@@ -1,0 +1,55 @@
+<div class="container my-5">
+    <h1>Add Device Routing Data</h1>
+
+    &nbsp;
+
+    <div class="row">
+        <div class="col-6">
+
+            <form #form="ngForm" (ngSubmit)="addRoutingData()">
+                <div class="mb-3">
+
+                    
+                   <label for="" class="form-label">Airline</label>
+                   <input type="text" required placeholder="Airline" class="form-control" #airline="ngModel" name="airline" [(ngModel)]="routingData.airline">
+
+                   <div *ngIf="airline.invalid && (airline.dirty || airline.touched)" style="margin-bottom: 5px;">
+                    <span *ngIf="airline.errors?.['required']" style="color:red;">
+                    Airline is required.
+                    </span>
+                    </div>
+                    
+                   <label for="" class="form-label">Device Model</label>
+                   <select name="deviceModel" required class="form-control" [(ngModel)]="routingData.deviceModel" #deviceModel="ngModel">
+                    <option value="" disabled selected hidden>Select Device Model</option>
+                    <option value="TT-4000 (Flagship)">TT-4000 (Flagship)</option>
+                    <option value="TT-6000">TT-6000</option>
+                    <option value="TT-7000">TT-7000</option>
+                    <option value="TT-7100">TT-7100</option>
+                  </select>
+
+                  <div *ngIf="deviceModel.invalid && (deviceModel.dirty || deviceModel.touched)" style="margin-bottom: 5px;">
+                    <span *ngIf="deviceModel.errors?.['required']" style="color:red;">
+                        Device Model is required.
+                    </span>
+                   </div>
+
+
+               
+                   <label for="" class="form-label">Valid From</label>
+                   <input type="date" placeholder="ValidFrom" class="form-control" name="validFrom" [(ngModel)]="routingData.validFrom">
+
+                   <label for="" class="form-label">Valid To</label>
+                   <input type="date" placeholder="ValidTo" class="form-control" name="validTo" [(ngModel)]="routingData.validTo">
+
+                
+                </div>
+
+                  <button type="submit" class="btn btn-primary">Add</button> &nbsp;
+                  <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
+                  
+
+                
+            </form>
+        </div>
+    </div>

@@ -1,0 +1,172 @@
+<div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5" >
+
+    <h1 style="text-align: center;">User Signup</h1>
+
+
+
+
+    &nbsp;
+
+
+
+
+    <div class="card" style="padding:20px; align-items: center; background-color: transparent;">
+
+        <div class="col-6">
+
+                <form #form="ngForm" (ngSubmit)="registerUser()">
+
+
+
+
+                    <div class="mb-3">
+
+
+
+
+                        <label for="" class="form-label">Name</label>
+
+                        <input type="text" required placeholder="Name" class="form-control" id="name" name="name" [(ngModel)]="userData.name" #name="ngModel">
+
+
+
+
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" style="margin-bottom: 5px;">
+
+                            <span *ngIf="name.errors?.['required']" style="color:red;">
+
+                               Name is required
+
+                            </span>
+
+                            </div>
+
+
+
+
+                            <label for="" class="form-label"> Email</label>
+
+                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email (e.g. xyz@example.com)" class="form-control" name="email" #email="ngModel" [(ngModel)]="userData.email">  
+
+
+
+
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" style="margin-bottom: 5px;">
+
+                    <span *ngIf="email.errors?.['pattern']" style="color:red;">
+
+                         Email is not valid
+
+                    </span>
+
+                    </div>
+
+
+
+
+                    <label for="" class="form-label">UserName</label>
+
+                    <input type="text" required placeholder="UserName (e.g. @johndoe)" class="form-control" id="username" name="userName" [(ngModel)]="userData.userName" #userName="ngModel">
+
+
+
+
+                   
+
+                    <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" style="margin-bottom: 5px;">
+
+                        <span *ngIf="userName.errors?.['required']" style="color:red;">
+
+                            User Name is required
+
+                        </span>
+
+                        </div>
+
+               
+
+                    <label for="" class="form-label">Password</label>
+
+                    <input type="password" required placeholder="Password" class="form-control" id="password" name="password" [(ngModel)]="userData.password" #password="ngModel">
+
+
+
+
+                   
+
+                    <div *ngIf="password.invalid && (password.dirty || password.touched)" style="margin-bottom: 5px;">
+
+                        <span *ngIf="password.errors?.['required']" style="color:red;">
+
+                            Password is required
+
+                        </span>
+
+                        </div>
+
+
+
+
+                        <label for="" class="form-label">Confirm Password</label>
+
+                    <input type="password" required placeholder="Confirm Password" class="form-control" id="confirmPassword" name="confirmPassword" [(ngModel)]="userData.confirmPassword" #confirmPassword="ngModel">
+
+
+
+
+                   
+
+                    <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" style="margin-bottom: 5px;">
+
+                        <span *ngIf="password.errors?.['required']" style="color:red;">
+
+                            Confirm Password is required
+
+                        </span>
+
+                        </div>
+
+
+
+
+                    </div>
+
+
+
+
+                    <button type="submit" class="btn btn-primary">Register</button> <br><br>
+
+                    <div>Already User? <Strong><a (click)="login()" style="color:blue">Login</a></Strong></div>
+
+
+
+                </form>
+
+
+
+
+                &nbsp;
+
+<!--
+
+                <div class="alert alert-danger" *ngIf="data == 'Please Enter Valid UserName And Password'">
+
+
+
+
+                    {{data}}
+
+     
+
+                </div> -->
+
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+

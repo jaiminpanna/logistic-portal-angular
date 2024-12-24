@@ -1,0 +1,75 @@
+<div class="container my-5" style="overflow-y: scroll; height: 550px; display: block;">
+    <h1>Add Device Data</h1>
+    &nbsp;
+
+    <div class="row">
+        <div class="col-6">
+
+            <form #form="ngForm" (ngSubmit)="addDeviceData()">
+                <div class="mb-3">
+
+                
+                    <label for="" class="form-label">Device Id</label>
+                    <input type="text" required id="name" placeholder="Enter Device Id" class="form-control" name="deviceId" #deviceId="ngModel" [(ngModel)]="deviceData.deviceId">
+
+                    <div *ngIf="deviceId.invalid && (deviceId.dirty || deviceId.touched)" style="margin-bottom: 5px;">
+                   <span *ngIf="deviceId.errors?.['required']" style="color:red;">
+                       Device Id is required.
+                   </span>
+                  </div>
+                                            
+                    <label for="" class="form-label">Equipment Type</label>
+                    <input type="text" placeholder="Enter Equipment Type" class="form-control" name="equipmentType" [(ngModel)]="deviceData.equipmentType">
+                
+                    <label for="" class="form-label">Account Id</label>
+                    <input type="text" placeholder="Enter Account Id" class="form-control" name="accountId" [(ngModel)]="deviceData.accountId">
+ 
+                    <label for="" class="form-label">Account Name</label>
+                    <input type="text" placeholder="Enter Account Name" class="form-control" name="accountName" [(ngModel)]="deviceData.accountName">
+
+                    <label for="" class="form-label">Courier Id</label>
+                    <input type="number" placeholder="Enter Courier Id" class="form-control" name="courierId" [(ngModel)]="deviceData.courierId">
+ 
+                    <label for="" class="form-label">Contact Email</label>
+                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Enter Contact Email (e.g. xyz@example.com)" class="form-control" name="contactEmail" #contactEmail="ngModel" [(ngModel)]="deviceData.contactEmail">   
+
+                    <div *ngIf="contactEmail.invalid && (contactEmail.dirty || contactEmail.touched)" style="margin-bottom: 5px;">
+                    <span *ngIf="contactEmail.errors?.['pattern']" style="color:red;">
+                        Contact Email is not valid
+                    </span>
+                    </div>
+ 
+                    <label for="" class="form-label">Description</label>
+                    <input type="text" placeholder="Enter Description" class="form-control" name="description" [(ngModel)]="deviceData.description">
+ 
+                    <label for="" class="form-label">Status</label>
+                    <select name="status" required class="form-control" [(ngModel)]="deviceData.status" #status="ngModel">
+                        <option value="" disabled selected hidden>Select Status</option>
+                        <option value="Available">Available</option>
+                        <option value="In Transit">In Transit</option>
+                        <option value="Returning">Returning</option>
+                        <option value="Recovered">Recovered</option>
+                        <option value="Out For Repair">Out For Repair</option>
+                      </select>
+
+                      <div *ngIf="status.invalid && (status.dirty || status.touched)" style="margin-bottom: 5px;">
+                        <span *ngIf="status.errors?.['required']" style="color:red;">
+                            Status is required.
+                        </span>
+                       </div>
+
+                
+                </div>
+
+                  <button type="submit" class="btn btn-primary">Add</button> &nbsp;
+                  <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
+                  
+
+                
+            </form>
+            
+        </div>
+    </div>
+
+
+    

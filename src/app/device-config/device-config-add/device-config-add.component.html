@@ -1,0 +1,343 @@
+<div>
+<h1 style="text-align: center; margin-top: 20px;">Add Device Configuration Data</h1>
+</div>
+<div style="background-color: transparent; height: 100%; width: 100%; display: flex;">
+  <div style="background-color: transparent; display:block ;height: 100%; width: 50%; margin:40px 40px 40px 80px">
+
+   
+
+    &nbsp;
+
+    <div class="row">
+      <div class="col-6">
+
+        <form #form="ngForm" (ngSubmit)="addConfigData()">
+          <div class="mb-3">
+
+
+            <label for="" class="form-label">Configuration Name</label>
+            <input type="text" required placeholder="ConfigurationName" class="form-control" name="configurationName" #configurationName="ngModel"
+              [(ngModel)]="configData.configurationName">
+
+              <div *ngIf="configurationName.invalid && (configurationName.dirty || configurationName.touched)" style="margin-bottom: 5px;">
+             <span *ngIf="configurationName.errors?.['required']" style="color:red;">
+              Configuration Name is required.
+             </span>
+            </div>
+
+            <label for="" class="form-label">Device Type</label>
+            <select name="deviceType" required class="form-control"  [(ngModel)]="configData.deviceType" #deviceType="ngModel">
+              <option value="" disabled selected hidden>Select Device Type</option>
+              <option value="Sendum Device">Sendum Device</option>
+              <option value="Tive Device">Tive Device</option>
+            </select>
+
+            <div *ngIf="deviceType.invalid && (deviceType.dirty || deviceType.touched)" style="margin-bottom: 5px;">
+              <span *ngIf="deviceType.errors?.['required']" style="color:red;">
+                  Device Type is required.
+              </span>
+             </div>
+
+            <label for="" class="form-label">Valid From</label>
+            <input type="date" placeholder="ValidFrom" class="form-control" name="validFrom"
+              [(ngModel)]="configData.validFrom">
+
+            <label for="" class="form-label">Valid To</label>
+            <input type="date" placeholder="ValidTo" class="form-control" name="validTo"
+              [(ngModel)]="configData.validTo">
+
+              <label for="" class="form-label">Temperature Prob</label>
+              <select name="temperatureProb" class="form-control"  [(ngModel)]="configData.temperatureProb">
+                <option value="" disabled selected hidden>Select Temperature Prob</option>
+                <option value="BFA10093">BFA10093</option>
+                <option value="BFA10094">BFA10094</option>
+                <option value="BFA10134">BFA10134</option>
+                <option value="BFA10135">BFA10135</option>
+                <option value="BFA10119">BFA10119</option>
+                <option value="BFA10110">BFA10110</option>
+                <option value="BFA10141">BFA10141</option>
+                <option value="BFA10128">BFA10128</option>
+                <option value="BFA10113">BFA10113</option>
+              </select>
+
+          </div>
+
+          <button type="submit" class="btn btn-primary">Add</button> &nbsp;
+          <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
+
+
+
+        </form>
+      </div>
+
+
+
+
+
+    </div>
+
+
+  </div>
+
+
+
+
+  <div style="background-color: transparent; height: 500px; width: 50%; display:block; margin:40px 80px 40px 0px; overflow-y: scroll;">
+   
+
+    <div style="background-color: transparent; height: auto; width:auto;"> <span> Battery Range (%)</span> &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 
+      <mat-checkbox
+        class="example-margin" [(ngModel)]="isChecked1">Enable</mat-checkbox> &nbsp;  <br> &nbsp; &nbsp;
+
+    <div *ngIf="isChecked1" style ="border:1px solid black; border-radius: 5px; width: 400px; padding: auto">
+
+      <div style="margin: 15px">
+        <label *ngIf="isChecked1">Battery Range:</label> &nbsp; &nbsp;
+
+        <div *ngIf="isChecked1" style="display:contents; align-items: center;">&nbsp;
+          <input type="text" [(ngModel)]="configData.batteryMinRange"
+            style="width: 40px; background-color:rgb(11, 25, 73); border-color: white; color:white">
+          <input type="text" [(ngModel)]="configData.batteryMaxRange"
+            style="width: 40px; background-color:rgba(61, 11, 73, 1); border-color: white; color:white">
+        </div>
+        &nbsp; <br>
+
+        <ngx-slider *ngIf="isChecked1" [(value)]="configData.batteryMinRange" [(highValue)]="configData.batteryMaxRange" [options]="options"style="width: 300px;"></ngx-slider>
+        </div>
+        </div>
+      </div>
+
+
+    <div style="background-color: transparent; height: auto; width: 100%"> <span>Humidity Range (%)</span> &nbsp; &nbsp; &nbsp; &nbsp;
+      
+     
+      <mat-checkbox
+        class="example-margin" [(ngModel)]="isChecked2">Enable</mat-checkbox> &nbsp; <br>&nbsp; &nbsp;
+
+        <div *ngIf="isChecked2" style ="border:1px solid black; border-radius: 5px; width: 400px; padding: auto">
+
+          <div style="margin: 15px">
+        <label *ngIf="isChecked2">Humidity Range:</label> &nbsp; &nbsp;
+
+        <div *ngIf="isChecked2" style="display:contents;">&nbsp;
+          <input type="text" [(ngModel)]="configData.humidityMinRange"
+            style="width: 40px; background-color:rgb(11, 25, 73); border-color: white; color:white">
+          <input type="text" [(ngModel)]="configData.humidityMaxRange"
+            style="width: 40px; background-color:rgba(61, 11, 73, 1); border-color: white; color:white">
+        </div>
+        &nbsp;<br>
+
+        <ngx-slider *ngIf="isChecked2" [(value)]="configData.humidityMinRange" [(highValue)]="configData.humidityMaxRange" [options]="options1"style="width: 300px;"></ngx-slider>
+      </div>
+      </div></div>
+
+
+
+    <div style="background-color: transparent; height: auto; width: 100%"> <span>Light Range (%)</span> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+      
+      <mat-checkbox
+        class="example-margin" [(ngModel)]="isChecked3">Enable</mat-checkbox> &nbsp; <br>&nbsp; &nbsp; 
+
+        <div *ngIf="isChecked3" style ="border:1px solid black; border-radius: 5px; width: 400px; padding: auto">
+
+          <div style="margin: 15px">
+        <label *ngIf="isChecked3">Light Range:</label> &nbsp; &nbsp;
+
+        <div *ngIf="isChecked3" style="display:contents;">&nbsp;
+          <input type="text" [(ngModel)]="configData.lightMinRange"
+            style="width: 40px; background-color:rgb(11, 25, 73); border-color: white; color:white">
+          <input type="text" [(ngModel)]="configData.lightMaxRange"
+            style="width: 40px; background-color:rgba(61, 11, 73, 1); border-color: white; color:white">
+        </div>
+        &nbsp;<br>
+        <ngx-slider *ngIf="isChecked3" [(value)]="configData.lightMinRange" [(highValue)]="configData.lightMaxRange" [options]="options2"style="width: 300px;"></ngx-slider>
+      </div> </div></div>
+        
+
+
+        
+
+
+    <div style="background-color: transparent; height: auto; width: 100%"> <span> Shock (milliG)</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+      
+      
+      <mat-checkbox
+        class="example-margin" [(ngModel)]="isChecked4">Enable</mat-checkbox> &nbsp; <br>&nbsp; &nbsp;
+
+        <div *ngIf="isChecked4" style ="border:1px solid black; border-radius: 5px; width: 400px; padding: auto">
+
+          <div style="margin: 15px">
+        <label *ngIf="isChecked4">Shock:</label> &nbsp; &nbsp;
+
+        <div *ngIf="isChecked4" style="display:contents;"> &nbsp;
+          <input type="text" [(ngModel)]="configData.shockRange"
+            style="width: 50px; background-color:rgb(11, 25, 73); border-color: white; color:white">
+        </div>
+        &nbsp;<br>
+        <ngx-slider *ngIf="isChecked4" [(value)]="configData.shockRange" [options]="options3"style="width: 300px;"></ngx-slider> <br>&nbsp; &nbsp;
+    
+        
+    
+      <label *ngIf="isChecked4">Duration:</label>
+
+      <div *ngIf="isChecked4" style="display:contents;"> &nbsp;
+        <input type="text" [(ngModel)]="configData.shockDuration"
+          style="width: 40px; background-color:rgb(11, 25, 73); border-color: white; color:white">
+      </div>
+      &nbsp;<br>
+      <ngx-slider *ngIf="isChecked4" [(value)]="configData.shockDuration" [options]="options4"style="width: 300px;"></ngx-slider>
+  
+      
+    
+    </div></div></div>
+
+
+    <div style="background-color: transparent; height: auto; width: 100%"> <span> Tilt Range (o)</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+      
+     
+      <mat-checkbox
+        class="example-margin" [(ngModel)]="isChecked5">Enable</mat-checkbox> &nbsp; <br>&nbsp; &nbsp;
+
+        <div *ngIf="isChecked5" style ="border:1px solid black; border-radius: 5px; width: 400px; padding: auto">
+
+          <div style="margin: 15px">
+        <label *ngIf="isChecked5">Tilt Range:</label>&nbsp;&nbsp;
+
+        <div *ngIf="isChecked5" style="display:contents;"> &nbsp;
+          <input type="text" [(ngModel)]="configData.tiltMinRange"
+            style="width: 40px; background-color:rgb(11, 25, 73); border-color: white; color:white">
+          <input type="text" [(ngModel)]="configData.tiltMaxRange"
+            style="width: 40px; background-color:rgba(61, 11, 73, 1); border-color: white; color:white">
+        </div>
+        &nbsp;<br>
+        <ngx-slider *ngIf="isChecked5" [(value)]="configData.tiltMinRange" [(highValue)]="configData.tiltMaxRange" [options]="options5"style="width: 300px;"></ngx-slider>
+      </div></div></div>
+        
+
+
+
+    <div style="background-color: transparent; height: auto; width: 100%"> <span> Pressure Range (Pa.)</span> &nbsp;&nbsp;&nbsp; &nbsp;
+   
+     
+      <mat-checkbox class="example-margin" [(ngModel)]="isChecked6">Enable</mat-checkbox> &nbsp; <br>&nbsp; &nbsp;
+
+      <div *ngIf="isChecked6" style ="border:1px solid black; border-radius: 5px; width: 400px; padding: auto">
+
+        <div style="margin: 15px">
+      <label *ngIf="isChecked6">Pressure Range:</label> &nbsp; &nbsp;
+
+      <div *ngIf="isChecked6" style="display:contents;"> &nbsp;
+        <input type="text" [(ngModel)]="configData.pressureMinRange"
+          style="width: 50px; background-color:rgb(11, 25, 73); border-color: white; color:white">
+        <input type="text" [(ngModel)]="configData.pressureMaxRange"
+          style="width: 55px; background-color:rgba(61, 11, 73, 1); border-color: white; color:white">
+      </div>
+      &nbsp;<br>
+      <ngx-slider *ngIf="isChecked6" [(value)]="configData.pressureMinRange" [(highValue)]="configData.pressureMaxRange" [options]="options6"style="width: 300px;"></ngx-slider>
+    </div></div></div>
+      
+
+
+
+    <div style="background-color: transparent; height: auto; width: 100%"> <span> Temperature Range (℉)</span> &nbsp;
+      
+    
+      <mat-checkbox class="example-margin" [(ngModel)]="isChecked7">Enable</mat-checkbox> &nbsp; <br>&nbsp; &nbsp;
+
+      <div *ngIf="isChecked7" style ="border:1px solid black; border-radius: 5px; width: 400px; padding: auto">
+
+        <div style="margin: 15px">
+      <label *ngIf="isChecked7">Temperature Range:</label>&nbsp; &nbsp;
+
+      <div *ngIf="isChecked7" style="display:contents;">&nbsp;
+        <input type="text" [(ngModel)]="configData.temperatureMinRange"
+          style="width: 40px; background-color:rgb(11, 25, 73); border-color: white; color:white">
+        <input type="text" [(ngModel)]="configData.temperatureMaxRange"
+          style="width: 40px; background-color:rgba(61, 11, 73, 1); border-color: white; color:white">
+      </div>
+      &nbsp;<br>
+      <ngx-slider *ngIf="isChecked7" [(value)]="configData.temperatureMinRange" [(highValue)]="configData.temperatureMaxRange" [options]="options7"style="width: 300px;"></ngx-slider>
+    </div></div></div>
+      
+
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="form-container">
+    <div class="form-group">
+      <label class="label">Configuration Name:</label>
+      <input class="input" type="text" placeholder="Enter configuration name" />
+    </div>
+  
+    <div class="form-group">
+      <label class="label">Device Type:</label>
+      <mat-form-field class="select">
+        <mat-select>
+          <mat-option value="Sendum Device">Sendum Device</mat-option>
+          <mat-option value="Tive Device">Tive Device</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div class="form-group">
+      <label class="label">Valid From:</label>
+      <mat-form-field>
+        <input class="input" matInput [matDatepicker]="picker" placeholder="Choose a date" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  
+    <div class="form-group">
+      <label class="label">Valid To:</label>
+      <mat-form-field>
+        <input class="input" matInput [matDatepicker]="picker2" placeholder="Choose a date" />
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div> -->
+
+<!-- <div>
+      <label style="margin-right: 20px; color:white">Search: </label>
+      <mat-form-field style="margin-right: 20px; height:75px">
+        <mat-select [(ngModel)]="search_drop" placeholder="{{search_drop}}">
+          <mat-option value="[Select]">[Select]</mat-option>
+          <mat-option value="Sendum Device">Sendum Device</mat-option>
+          <mat-option value="Tive Device">Tive Device</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+<!-- <button style="margin-right: 20px;" class="btn hover-search"
+        style="border-radius: 5; background-color: rgba(61, 11, 73, 1); color: white; border-width: 2px; border-color: white;"
+        (click)="search_butt()">Search</button> -->
+<!-- </div> -->

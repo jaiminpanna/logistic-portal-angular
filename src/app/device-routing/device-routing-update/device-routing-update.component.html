@@ -1,0 +1,78 @@
+<div class="container my-5">
+    <h1>Update Device Routing Data</h1>
+
+    &nbsp;
+
+    <div class="row">
+        <div class="col-6">
+
+            <form #form="ngForm" (ngSubmit)="updateConfigData()">
+                <div class="mb-3">
+
+                    
+                   <label for="" class="form-label">Airline</label>
+                   <input type="text" placeholder="Airline" class="form-control"  name="airline" [(ngModel)]="routingData.airline">
+                    
+                   <!-- <label for="" class="form-label">Device Model</label>
+                   <input type="text" placeholder="DeviceModel" class="form-control" name="deviceModel" [(ngModel)]="routingData.deviceModel"> -->
+
+                   <label for="" class="form-label">Device Model</label>
+                   <select name="deviceModel" required class="form-control" [(ngModel)]="routingData.deviceModel" #deviceModel="ngModel">
+                    <option value="" disabled selected hidden>Select Device Model</option>
+                    <option value="TT-4000 (Flagship)">TT-4000 (Flagship)</option>
+                    <option value="TT-6000">TT-6000</option>
+                    <option value="TT-7000">TT-7000</option>
+                    <option value="TT-7100">TT-7100</option>
+                  </select>
+
+               
+                   <label for="" class="form-label">Valid From</label>
+                   <input type="date" placeholder="ValidFrom" class="form-control" name="validFrom" [(ngModel)]="routingData.validFrom">
+
+                   <label for="" class="form-label">Valid To</label>
+                   <input type="date" placeholder="ValidTo" class="form-control" name="validTo" [(ngModel)]="routingData.validTo">
+
+                
+                </div>
+
+                  <button type="submit" class="btn btn-primary">Update</button> &nbsp;
+
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Delete</button>
+
+                  <div class="alert alert-danger" *ngIf="data == 'Device Routing is not found'">
+
+                    {{data}}
+      
+                </div>
+                  
+
+                
+            </form>
+
+        </div>
+    </div>
+
+
+        <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="exampleModalLongTitle">Delete Device</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure want to delete?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteRoutingData(routingData.airline)">Delete</button>
+          <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+

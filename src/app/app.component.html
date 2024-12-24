@@ -1,0 +1,129 @@
+<header>
+  <div class="bg-img">
+    
+    <!-- Top Navigation Bar-->
+    <mat-toolbar *ngIf="!isLoginPage" style="background-color: rgba(61, 11, 73, 0.596); color:aliceblue; height: 75px;">
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item data-toggle="modal" data-target="#exampleModalCenter">LogOut</button>
+      </mat-menu>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+
+
+      <span>Logistic Application </span>
+
+      <span class="spacer"></span>
+      <div class="button-container">
+        <button mat-button style="border-radius: 0;" class="hover-button" routerLink="/Device">GPS Device</button>
+        <button mat-button style="border-radius: 0;" class="hover-button" routerLink="/DeviceConfig">Device Configuration</button>
+        <button mat-button style="border-radius: 0;" class="hover-button" routerLink="/DeviceMaster">Device Master</button>
+        <button mat-button style="border-radius: 0;" class="hover-button" routerLink="/DeviceRouting">Device Routing</button>
+      </div>
+    </mat-toolbar>
+
+ 
+
+    <router-outlet></router-outlet>
+
+
+    <!--Search Text and Search Filterbox and Button-->
+    <!-- <div style="display: flex; justify-content: space-between; align-items: center; margin: 20px;">
+      <div>
+        <label style="color:white; font-size: large;">{{search_text}}</label>
+      </div>
+      <div>
+        <label style="margin-right: 20px; color:white">Search: </label>
+        <mat-form-field style="margin-right: 20px; height:75px">
+          <mat-select [(ngModel)]="search_drop" placeholder="{{search_drop}}">
+            <mat-option value="[Select]">[Select]</mat-option>
+            <mat-option value="Sendium Device">Sendium Device</mat-option>
+            <mat-option value="Tive Device">Tive Device</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button style="margin-right: 20px;" class="btn hover-search"
+          style="border-radius: 5; background-color: rgba(61, 11, 73, 1); color: white; border-width: 2px; border-color: white;"
+          (click)="search_butt()">Search</button>
+      </div>
+    </div> -->
+
+
+
+    <!--Table-->
+    <!-- <div class="mat-elevation-z8" style="margin: 20px 20px 20px 20px">
+      <table mat-table [dataSource]="datasource" style="font-style: normal; background-color:rgba(255, 255, 255, 0.256); border-width: 2px;border-color:white;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+    
+        <ng-container matColumnDef="config_name">
+          <th mat-header-cell *matHeaderCellDef style="background-color: rgba(61, 11, 73, 1); color:white"> Configuration Name </th>
+          <td style="font-size: smaller;" mat-cell *matCellDef="let element"> {{element.config_name}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="device_type">
+          <th  style="background-color: rgba(61, 11, 73, 1); color:white" mat-header-cell *matHeaderCellDef> Device Type </th>
+          <td  style="font-size: smaller;" mat-cell *matCellDef="let element"> {{element.device_type}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="validFrom">
+          <th style="background-color: rgba(61, 11, 73, 1); color:white" mat-header-cell *matHeaderCellDef> Valid From </th>
+          <td  style="font-size: smaller;" mat-cell *matCellDef="let element"> {{element.validFrom}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="validTo">
+          <th style="background-color: rgba(61, 11, 73, 1); color:white" mat-header-cell *matHeaderCellDef> Valid To </th>
+          <td  style="font-size: smaller;" mat-cell *matCellDef="let element"> {{element.validTo}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator style="background-color: rgba(255, 255, 255, 0.8);" [pageSize]="5" showFirstLastButtons></mat-paginator>
+    </div> -->
+  </div>
+</header>
+
+<style>
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  table{font-size: 2px;}
+
+  .button-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .hover-button:hover {
+    background-color: rgba(221, 0, 155, 0.911);
+    height: 75px;
+    color: rgba(255, 255, 255, 1)
+  }
+</style>
+
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLongTitle">Logout</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure want to logout?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="logOut()">Logout</button>
+        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+

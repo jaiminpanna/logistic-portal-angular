@@ -1,0 +1,32 @@
+.bg-img {
+    /* The image used */
+    background: linear-gradient(to top, #29072cb7, #29072cb7), url("https://wallpapercave.com/wp/wp3704689.jpg");
+
+    /* Control the height of the image */
+    height: 100%;
+    width: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    
+    /* background-size: contain; */
+}
+body{
+  text-decoration: none;
+}
+
+.custom-header-row {
+    background-color: blue;
+  }
+
+  .mat-cell, .mat-header-cell {
+    height: 50px;
+  }
+/* .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */

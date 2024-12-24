@@ -1,0 +1,221 @@
+<div class="container my-4">
+
+  <h1 style="text-align: center;">Configuration Data </h1>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; ">
+
+    <div style="margin: 20px">
+      <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="search()" placeholder="Configuration Name"> &nbsp;
+      <button (click)="search()" style="border-radius: 5; background-color:  rgba(61, 11, 73, 1);">Search</button> 
+      <button (click)="reset()">Reset</button> <p style="margin-top: 5px;">{{searchErrMsg}}</p></div>
+      <div>
+        <label style="color:white; font-size: large;">{{search_text}}</label>
+      </div>
+      <div>
+      
+        <mat-form-field style="margin-right: 20px; height:75px; background-color: transparent;">
+          <mat-select [(ngModel)]="search_drop" placeholder="{{search_drop}}">
+            <mat-option value="[Select]">[Device Type]</mat-option>
+            <mat-option value="Sendum Device">Sendum Device</mat-option>
+            <mat-option value="Tive Device">Tive Device</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <button style="margin-right: 20px;" class="btn hover-search"
+          style="border-radius: 5; background-color:  rgba(61, 11, 73, 1); color: white; border-width: 2px; border-color: white;" (click)=" searchDevice()"
+          >Search</button>
+      </div>
+    </div>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="datasource" matSort style="background-color: transparent;">
+
+
+    <ng-container matColumnDef="configurationName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Configuration Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> <a [routerLink]="['/DeviceConfig', 'update', row.configurationName]"> {{row.configurationName}} </a></mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="deviceType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Device Type </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.deviceType}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="validFrom">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Valid From </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.validFrom}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="validTo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Valid To </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.validTo}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons style="background-color: transparent;"></mat-paginator>
+</div>
+</div>
+
+
+
+<div style="display: flex;  margin: 50px; position: relative; bottom: 20px;">
+ 
+  <div>
+    
+    <button style="margin-left: 30px;" class="btn btn-add" (click)="addConfigData()">Add +</button>
+  </div>
+</div>
+
+
+<style>
+
+  .btn-add {
+    border-radius: 5;
+    background-color: rgba(61, 11, 73, 1);
+    color: white;
+    border-width: 2px;
+    border-color: white;
+  }
+
+  .btn-add:hover {
+    border-radius: 5;
+    border-width: 2px;
+    border-color: white;
+    background-color: rgba(7, 165, 31, 0.911);
+    color: rgba(255, 255, 255, 1);
+  }
+</style>
+
+
+
+
+
+
+
+
+<!-- <div class="container my-4">
+
+    <h1> Configuration Data </h1>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; ">
+      <div>
+        <label style="color:white; font-size: large;">{{search_text}}</label>
+      </div>
+      <div>
+      
+        <mat-form-field style="margin-right: 20px; height:75px; background-color: transparent;">
+          <mat-select [(ngModel)]="search_drop" placeholder="{{search_drop}}">
+            <mat-option value="[Select]">[Device Type]</mat-option>
+            <mat-option value="Sendum Device">Sendum Device</mat-option>
+            <mat-option value="Tive Device">Tive Device</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <button style="margin-right: 20px;" class="btn hover-search"
+          style="border-radius: 5; background-color: transparent; color: white; border-width: 2px; border-color: white;" (click)="searchDevice()"
+          >Search</button>
+      </div>
+    </div>
+    
+  
+    <table class="table" *ngIf="configData && configData.length > 0">
+        <thead>
+            <tr>
+                <th> Configuration Name </th>
+                <th> Device Type </th>
+                <th> Valid From </th>
+                <th> Valid To </th>
+              
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of configData">
+                <td> <a [routerLink]="['/DeviceConfig', 'update', data.configurationName]"> {{data.configurationName}}</a> </td>
+                <td> {{data.deviceType}} </td> 
+                <td> {{data.validFrom}} </td> 
+                <td> {{data.validTo}} </td> 
+  
+                
+            </tr>
+        </tbody>
+
+    </table>
+  
+    <p *ngIf="!configData || configData.length <= 0">Configuration Data Not Found</p>
+
+    <mat-paginator [length]="100"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page" style="background-color: transparent;">
+   </mat-paginator>
+  
+  </div> -->
+
+
+  <!-- <div class="col-lg-6 col-md-6 col-sm-6 paddingleft0right7">
+    <div class="col-lg-12 Rangestr">
+        <div class="col-lg-3 col-md-3 col-sm-3 paddingleftright0 text-left">
+            <input type="checkbox" class="checkbox-custom ng-pristine ng-untouched ng-valid" id="ChckboxEnbleBatteryrange" ng-model="DeviceParameterSetting.BatteryRange.IsEnabled" ng-disabled="IsScrollDisabled == true">
+            <label for="ChckboxEnbleBatteryrange" class="checkbox-custom-label">Enable</label>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <p>
+                <label style="width:115px" for="priceBetteryRange">Battery Range:</label>
+               
+                <input type="text" id="Betterymin" class="range-price-font ng-pristine ng-untouched ng-valid ng-valid-maxlength" ng-model="DeviceParameterSetting.BatteryRange.Min" positivenumbers-only="" maxlength="2" convertblanktozero="" ng-disabled="DeviceParameterSetting.BatteryRange.IsEnabled == false || IstxtDisabled == true" ng-change="changetextvalue('Battery')">
+                <i class="fa fa-long-arrow-right"></i>
+                <input type="text" id="Betterymax" class="range-price-font margin-left-5 ng-pristine ng-untouched ng-valid ng-valid-maxlength" ng-model="DeviceParameterSetting.BatteryRange.Max" positivenumbers-only="" maxlength="3" convertblanktozero="" ng-disabled="DeviceParameterSetting.BatteryRange.IsEnabled == false || IstxtDisabled == true" ng-change="changetextvalue('Battery')">
+            </p>
+        </div>
+        <label class="col-lg-3 col-md-3 col-sm-3 paddingleftright0 text-left">Battery Range (%)</label>
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="slider-wrapper ">
+               
+
+                <div id="sliderBetteryRange" rangeslider="" ng-model="DeviceParameterSetting.BatteryRange" ng-disabled="IsScrollDisabled == true" ng-class="{'disabled': (DeviceParameterSetting.BatteryRange.IsEnabled == false)}" defaultmin="0" defaultmax="100" class="ng-pristine ng-untouched ng-valid ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 20%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 100%;"></span></div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+  <!-- <div style="display: flex;  margin: 50px; position: relative; bottom: 20px;">
+   
+    <div>
+      
+      <button style="margin-left: 20px;" class="btn btn-add" (click)="addConfigData()">Add +</button>
+    </div>
+  </div>
+
+
+
+
+
+  
+  
+  <style>
+  
+    .btn-add {
+      border-radius: 5;
+      background-color: rgba(61, 11, 73, 1);
+      color: white;
+      border-width: 2px;
+      border-color: white;
+    }
+  
+    .btn-add:hover {
+      border-radius: 5;
+      border-width: 2px;
+      border-color: white;
+      background-color: rgba(7, 165, 31, 0.911);
+      color: rgba(255, 255, 255, 1);
+    }
+  </style> -->
+
+

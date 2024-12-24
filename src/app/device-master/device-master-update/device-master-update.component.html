@@ -1,0 +1,92 @@
+<div class="container my-5" style="overflow-y: scroll; height: 550px;">
+    <h1>Update Device Master Data</h1>
+
+    &nbsp;
+
+    <div class="row">
+        <div class="col-6">
+
+            <form #form="ngForm" (ngSubmit)="updateMasterData()">
+                <div class="mb-3">
+
+                    
+                   <label for="" class="form-label">Device Id</label>
+                   <input type="text" placeholder="DeviceId" class="form-control"  name="deviceId" [(ngModel)]="masterData.deviceId">
+
+                   <label for="" class="form-label">Device Name</label>
+                   <input type="text" placeholder="DeviceName" class="form-control" name="deviceName" [(ngModel)]="masterData.deviceName">
+                    
+                   <!-- <label for="" class="form-label">Device Type</label>
+                   <input type="text" placeholder="EquipmentType" class="form-control" name="deviceType" [(ngModel)]="masterData.deviceType"> -->
+
+                   
+                   <label for="" class="form-label">Device Type</label>
+                   <select name="deviceType" required class="form-control"  [(ngModel)]="masterData.deviceType" #deviceType="ngModel">
+                       <option value="" disabled selected hidden>Select Device Type</option>
+                       <option value="Sendum Device">Sendum Device</option>
+                       <option value="Tive Device">Tive Device</option>
+                     </select>  
+
+                   <!-- <label for="" class="form-label">Status</label>
+                   <input type="text" placeholder="Status" class="form-control" name="status" [(ngModel)]="masterData.status">
+                -->
+
+                <label for="" class="form-label">Status</label>
+                <select name="status" required class="form-control" [(ngModel)]="masterData.status" #status="ngModel">
+                    <option value="" disabled selected hidden>Select Status</option>
+                    <option value="Available">Available</option>
+                    <option value="In Transit">In Transit</option>
+                    <option value="Returning">Returning</option>
+                    <option value="Recovered">Recovered</option>
+                    <option value="Out For Repair">Out For Repair</option>
+                  </select>
+
+
+                   <label for="" class="form-label">Ownership</label>
+                   <input type="text" placeholder="Ownership" class="form-control" name="ownership" [(ngModel)]="masterData.ownership">
+
+                   <label for="" class="form-label">Valid From</label>
+                   <input type="date" placeholder="ValidFrom" class="form-control" name="validFrom" [(ngModel)]="masterData.validFrom">
+
+                   <label for="" class="form-label">Valid To</label>
+                   <input type="date" placeholder="ValidTo" class="form-control" name="validTo" [(ngModel)]="masterData.validTo">
+
+                   <label for="" class="form-label">Market</label>
+                   <input type="text" placeholder="Market" class="form-control" name="market" [(ngModel)]="masterData.market">
+
+                
+                
+                </div>
+
+                  <button type="submit" class="btn btn-primary">Update</button> &nbsp;
+
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Delete</button>
+                  
+
+                
+            </form>
+        </div>
+    </div>
+
+    <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="exampleModalLongTitle">Delete Device</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure want to delete?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteMasterData(masterData.deviceId)">Delete</button>
+          <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>

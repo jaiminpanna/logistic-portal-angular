@@ -1,0 +1,161 @@
+<div class="container my-4">
+
+  <h1 style="text-align: center;">Routing Data </h1>
+
+
+     <div style="margin: 20px">
+      <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="search()" placeholder="Airline"> &nbsp;
+      <button (click)="search()" style="border-radius: 5; background-color:  rgba(61, 11, 73, 1);">Search</button> 
+      <button (click)="reset()">Reset</button><p style="margin-top: 5px;">{{searchErrMsg}}</p></div>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="datasource" matSort style="background-color: transparent;">
+
+
+    <ng-container matColumnDef="airline">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Airline </mat-header-cell>
+      <mat-cell *matCellDef="let row"> <a [routerLink]="['/DeviceRouting', 'update', row.airline]"> {{row.airline}} </a></mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="deviceModel">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Device Model </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.deviceModel}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="validFrom">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Valid From </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.validFrom}} </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="validTo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Valid To </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.validTo}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons style="background-color: transparent;"></mat-paginator>
+</div>
+</div>
+
+
+
+<div style="display: flex;  margin: 50px; position: relative; bottom: 20px;">
+ 
+  <div>
+    
+    <button style="margin-left: 30px;" class="btn btn-add" (click)="addRoutingData()">Add +</button>
+  </div>
+</div>
+
+
+<style>
+
+  .btn-add {
+    border-radius: 5;
+    background-color: rgba(61, 11, 73, 1);
+    color: white;
+    border-width: 2px;
+    border-color: white;
+  }
+
+  .btn-add:hover {
+    border-radius: 5;
+    border-width: 2px;
+    border-color: white;
+    background-color: rgba(7, 165, 31, 0.911);
+    color: rgba(255, 255, 255, 1);
+  }
+</style>
+
+
+
+
+
+
+<!-- <div class="container my-4">
+
+    <h1> Device Routing Data </h1>
+    &nbsp;
+
+    <table class="table" *ngIf="routingData && routingData.length > 0">
+        <thead>
+            <tr>
+                <th> Airline </th>
+                <th> Device Model </th>
+                <th> Valid From </th>
+                <th> Valid To </th>
+    
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of routingData">
+                <td><a [routerLink]="['/DeviceRouting', 'update', data.airline]"> {{data.airline}}</a> </td>
+                <td> {{data.deviceModel}} </td> 
+                <td> {{data.validFrom}} </td> 
+                <td> {{data.validTo }} </td>
+                
+            </tr>
+        </tbody>
+    </table>
+
+    <p *ngIf="!routingData || routingData.length <= 0">Routing Data Not Found</p>
+
+    <mat-paginator [length]="100"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page" style="background-color: transparent;">
+   </mat-paginator>
+
+</div>
+
+<div style= "display: flex;  margin: 50px; position: relative; bottom: 20px;">
+  
+    <div>
+      
+      <button style="margin-left: 20px;" class="btn btn-add" (click)="addConfigData()">Add +</button>
+    </div>
+  </div>
+
+  <style>
+    .btn-del {
+      border-radius: 5;
+      background-color: rgba(61, 11, 73, 1);
+      color: white;
+      border-width: 2px;
+      border-color: white;
+    }
+  
+    .btn-del:hover {
+      border-radius: 5;
+      border-width: 2px;
+      border-color: white;
+      background-color: rgba(221, 0, 41, 0.911);
+      color: rgba(255, 255, 255, 1);
+    }
+  
+    .td:hover{
+      background-color: rgba(221, 0, 155, 0.911);
+      color: rgba(255, 255, 255, 1);
+    }
+  
+    .btn-add {
+      border-radius: 5;
+      background-color: rgba(61, 11, 73, 1);
+      color: white;
+      border-width: 2px;
+      border-color: white;
+    }
+  
+    .btn-add:hover {
+      border-radius: 5;
+      border-width: 2px;
+      border-color: white;
+      background-color: rgba(7, 165, 31, 0.911);
+      color: rgba(255, 255, 255, 1);
+    }
+  </style> -->
